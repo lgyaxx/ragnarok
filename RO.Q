@@ -52,7 +52,43 @@ coords = dm.Ocr(490, 18, 550, 33, "ffff63-000000", 1.0)
 
 coords = split(coords, ",")
 
-MessageBox "当前坐标X: " & coords(0) & vbcrlf & "当前坐标Y: " & coords(1)
+//MessageBox "当前坐标X: " & coords(0) & vbcrlf & "当前坐标Y: " & coords(1)
+
+Delay 3000
+
+/**
+ *	Define bounds of the current map
+**/
+
+mapRightBoundX = 200
+
+mapLeftBoundX = 100
+
+mapUpperBoundY = 200
+
+mapLowerBoundY = 100
+
+
+While true
+	dm_ret = dm.FindPic (0, 0, 1024, 768, "D:\ro_test\monsters\波利.bmp", "000000", 0.9, 0, intX, intY)
+	If intX >= 0 and intY >= 0 Then 
+		Delay 100
+		dm.MoveTo intX + 10, intY + 10
+		Delay 100
+		dm.LeftClick 
+		Delay 3000
+	End If
+	Delay 200
+Wend
+/*
+FindPic 0,0,1024,768,"D:\ro_test\波利.bmp",0.3,intX,intY
+If intX > 0 And intY > 0 Then 
+	MoveTo intX, intY
+	Delay 500
+	LeftClick 1
+End If
+*/
+
 
 Sub OnScriptExit()
     dm_ret = dm.UnBindWindow() 
